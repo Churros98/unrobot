@@ -1,0 +1,16 @@
+{
+  "name": "unrobot",
+  "version": "1.0.0",
+  "description": "unrobot is a simple robot descriptor loader and toolkit for robotics applications.",
+  "main": "robot.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Sofiane",
+  "license": "MIT",
+  "packageManager": "pnpm@10.13.1",
+  "dependencies": {
+    "zod": "^4.1.12"
+  }
+}
