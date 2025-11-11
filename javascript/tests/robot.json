@@ -1,0 +1,103 @@
+{
+    "information": {
+        "name": "robot_arm",
+        "version": 1.0,
+        "description": "Description of a robotic arm with multiple joints.",
+        "author": "Sofiane"
+    },
+    "joints": {
+        "base_link": {
+            "id": 0,
+            "is_root": true,
+            "constraint": {
+                "min": -180,
+                "max": 180
+            },
+            "origin": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+            },
+            "linked_to": [
+                "BrasHorizontal1"
+            ]
+        },
+        "Bras1": {
+            "id": 2,
+            "constraint": {
+                "min": -180,
+                "max": 180
+            },
+            "linked_to": [
+                "Bras2"
+            ],
+            "rotation": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "origin": {
+                "x": 182.37254896624194,
+                "y": -2.1311455855193824,
+                "z": 113.75155197067069
+            }
+        },
+        "Bras2": {
+            "id": 3,
+            "constraint": {
+                "min": -180,
+                "max": 180
+            },
+            "linked_to": [
+                "Cone1"
+            ],
+            "rotation": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "origin": {
+                "x": 153.40298005250622,
+                "y": -2.131145585519499,
+                "z": 437.89505198149874
+            }
+        },
+        "Cone1": {
+            "id": 4,
+            "constraint": {
+                "min": -180,
+                "max": 180
+            },
+            "rotation": {
+                "x": 0,
+                "y": 1,
+                "z": 0
+            },
+            "origin": {
+                "x": 124.45841190618019,
+                "y": -1.1311455855199588,
+                "z": 761.538570343108
+            }
+        },
+        "BrasHorizontal1": {
+            "id": 1,
+            "linked_to": [
+                "Bras1"
+            ],
+            "constraint": {
+                "min": -180,
+                "max": 180
+            },
+            "rotation": {
+                "x": 0,
+                "y": 0,
+                "z": 1
+            },
+            "origin": {
+                "x": 114.38956726715746,
+                "y": -0.15699994377311455,
+                "z": 112.02000000000005
+            }
+        }
+    }
+}

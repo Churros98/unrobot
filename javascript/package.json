@@ -4,7 +4,7 @@
   "description": "unrobot is a simple robot descriptor loader and toolkit for robotics applications.",
   "main": "robot.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "Sofiane",
@@ -12,5 +12,9 @@
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
     "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.28.5",
+    "jest": "^30.2.0"
   }
 }
