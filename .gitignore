@@ -1,5 +1,9 @@
 javascript/node_modules/
 javascript/pnpm-lock.yaml
+python/tests/__pycache__/
+python/.*
+python/build/
 */.*
 .*
 !.gitignore
+!.github

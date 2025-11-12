@@ -1,0 +1,51 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set pnpm & node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+      - name: Go to javascript directory
+        run: |
+          cd javascript
+      - name: Install dependencies
+        run: |
+          pnpm install
+      - name: Install current library
+        run: |
+          pnpm add ..
+      - name: Run tests
+        id: test_result
+        run: |
+          if pnpm test; then
+            echo "::set-output name=result::success"
+          else
+            echo "::set-output name=result::failure"
+          fi
+      - name: Send fail message to PR
+        if: steps.test_result.outputs.result == 'failure'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            ## Test Results
+            JAVASCRIPT: Some tests failed! ❌ Please check the logs for more details.
+      - name: Send success message to PR
+        if: steps.test_result.outputs.result == 'success'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          message: |
+            ## Test Results
+            JAVASCRIPT: All tests have passed successfully! 🎉

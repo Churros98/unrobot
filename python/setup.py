@@ -5,11 +5,11 @@ setup(
     version='0.1.0',    
     description='unrobot is a simple robot descriptor loader and toolkit for robotics applications.',
     url='https://github.com/Churros98/unrobot',
-    author='Churros98',
+    author='Sofiane',
     author_email='Churros98@example.com',
     license='MIT',
     packages=['unrobot'],
-    install_requires=['numpy', 'pydantic'],
+    install_requires=['pydantic==2.12.4'],
     python_requires='>=2.7',
     classifiers=[
         'Development Status :: 1 - Planning',

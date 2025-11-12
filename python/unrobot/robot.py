@@ -20,4 +20,4 @@ def load_robot_from_file(file_path: str) -> RobotModel:
         root_joint=root_joint
     )
 
-    return RobotModel(model=robot_model)
+    return robot_model

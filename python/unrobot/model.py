@@ -1,11 +1,12 @@
-from pydantic import Annotated, BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator
+from typing import Optional
 
 #########################################
 ## Basic types
 #########################################
 
 class AngleModel(BaseModel):
-    angle: Annotated[float] = Field(ge=-180.0, le=180.0)  # Angle in degrees between -360 and 360
+    angle: float = Field(ge=-180.0, le=180.0)  # Angle in degrees between -360 and 360
 
 class PositionModel(BaseModel):
     x: float
@@ -13,14 +14,14 @@ class PositionModel(BaseModel):
     z: float
 
 class RotationAxisModel(BaseModel):
-    x: int = Field(ge=1, le=0)
-    y: int = Field(ge=1, le=0)
-    z: int = Field(ge=1, le=0)
+    x: int = Field(ge=0, le=1)
+    y: int = Field(ge=0, le=1)
+    z: int = Field(ge=0, le=1)
 
 class ConstraintModel(BaseModel):
-    min: Annotated[float] = Field(ge=-180.0, le=180.0)
-    max: Annotated[float] = Field(ge=-180.0, le=180.0)
-    
+    min: float = Field(ge=-180.0, le=180.0)
+    max: float = Field(ge=-180.0, le=180.0)
+
     @model_validator(mode='after')
     def check_constraints(self):
         if self.min > self.max:
@@ -58,8 +59,8 @@ class JointNodeModel(BaseModel):
     angle: AngleModel
     constraint: ConstraintModel
     origin: PositionModel
-    rotation: RotationAxisModel | None = None
-    parent: 'JointNodeModel' | None = None
+    rotation: Optional[RotationAxisModel] = None
+    parent: Optional['JointNodeModel'] = None
     children: list['JointNodeModel'] = []
 
 class RobotModel(BaseModel):

@@ -1,0 +1,32 @@
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set pnpm & node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+      - name: Go to javascript directory
+        run: |
+          cd javascript
+      - name: Install dependencies
+        run: |
+          pnpm install
+      - name: Publish to npm
+        run: |
+          pnpm publish --access public --otp ${{ secrets.NPM_OTP }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Confirm publish
+        run: |
+          echo "Package published to npm successfully!" 
