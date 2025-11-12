@@ -23,10 +23,8 @@ export function load_robot(data: string) {
     const descriptor = RobotDescriptorSchema.parse(JSON.parse(data))
     const rootJoint = create_joints_tree(descriptor.joints)
 
-    return RobotSchema.parse(
-        {
-            information: descriptor.information,
-            rootJoint: rootJoint
-        }
-    )
+    return {
+        information: descriptor.information,
+        rootJoint: rootJoint
+    } as Robot
 }

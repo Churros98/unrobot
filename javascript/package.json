@@ -11,10 +11,15 @@
   "license": "MIT",
   "packageManager": "pnpm@10.13.1",
   "dependencies": {
+    "@babel/preset-env": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "ts-jest": "^29.4.5",
     "zod": "^4.1.12"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.28.5",
+    "@jest/globals": "^30.2.0",
+    "@types/node": "^24.10.1",
     "jest": "^30.2.0"
   }
 }
