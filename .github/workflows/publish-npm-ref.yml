@@ -8,11 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set pnpm & node
+      - name: Setup node
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-          cache: 'pnpm'
       - name: Install pnpm
         run: |
           npm install -g pnpm
@@ -24,9 +23,6 @@ jobs:
           pnpm install
       - name: Publish to npm
         run: |
-          pnpm publish --access public --otp ${{ secrets.NPM_OTP }}
+          pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Confirm publish
-        run: |
-          echo "Package published to npm successfully!" 
