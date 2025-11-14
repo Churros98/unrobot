@@ -92,3 +92,19 @@ def list_of_joints_from_root(joint: JointNodeModel) -> List[JointNodeModel]:
         current = current.parent
     joints.reverse()
     return joints
+
+def list_of_joints_from_robot_root(root: JointNodeModel) -> List[JointNodeModel]:
+    """
+    Get the list of all joints in the robot starting from the root
+    """
+    joints: List[JointNodeModel] = []
+
+    def recursive_collect(joint: JointNodeModel):
+        if joint not in joints:
+            joints.append(joint)
+            for child in joint.children:
+                recursive_collect(child)
+
+    recursive_collect(root)
+    return joints
+

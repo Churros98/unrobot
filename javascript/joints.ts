@@ -106,3 +106,21 @@ export function list_of_joints_from_root(joint: JointNode): JointNode[] {
 
   return joints.reverse()
 }
+
+// Get the list of all joints in the robot starting from the root
+// @param rootJoint The root JointNode of the robot
+// @returns An array of all JointNodes in the robot
+export function list_all_joints_from_root(rootJoint: JointNode): JointNode[] {
+  const joints: JointNode[] = []
+  const recursive_collect = (joint: JointNode) => {
+    if (joints.includes(joint)) {
+      return
+    }
+
+    joints.push(joint)
+    joint.joints.forEach(recursive_collect)
+  }
+
+  recursive_collect(rootJoint)
+  return joints
+}
