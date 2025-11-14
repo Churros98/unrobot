@@ -20,4 +20,4 @@ jobs:
           cd python
           python -m pip install --upgrade build twine
           python -m build
-          python -m twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
+          python -m twine upload dist/* -u theorywrong -p ${{ secrets.PYPI_TOKEN }}
