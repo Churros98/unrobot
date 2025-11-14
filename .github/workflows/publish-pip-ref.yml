@@ -11,12 +11,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           pip install -r ./python/requirements.txt
       - name: Publish to PyPI
         run: |
+          cd python
           python -m pip install --upgrade build twine
           python -m build
           python -m twine upload dist/* -u __token__ -p ${{ secrets.PYPI_TOKEN }}
