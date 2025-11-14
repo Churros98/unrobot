@@ -1,6 +1,6 @@
 {
   "name": "unrobot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "unrobot is a simple robot descriptor loader and toolkit for robotics applications.",
   "main": "robot.ts",
   "scripts": {
