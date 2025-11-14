@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='unrobot',
-    version='1.0.1',
+    version='1.0.2',
     description='unrobot is a simple robot descriptor loader and toolkit for robotics applications.',
     url='https://github.com/Churros98/unrobot',
     author='Sofiane',
