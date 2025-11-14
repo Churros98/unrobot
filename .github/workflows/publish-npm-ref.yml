@@ -15,13 +15,12 @@ jobs:
       - name: Install pnpm
         run: |
           npm install -g pnpm
-      - name: Go to javascript directory
-        run: |
-          cd javascript
       - name: Install dependencies
+        working-directory: ./javascript
         run: |
           pnpm install
       - name: Publish to npm
+        working-directory: ./javascript
         run: |
           pnpm publish --access public
         env:
