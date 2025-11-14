@@ -34,6 +34,7 @@ export function create_joints_tree(joints_descriptor: JointsDescriptor): JointNo
       name: jointName,
       angle: { deg: 0 },
       constraint: joint.constraint,
+      rotation: joint.rotation,
       origin: joint.origin,
       parent: undefined,
       joints: [],

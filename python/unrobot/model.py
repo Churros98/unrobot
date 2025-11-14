@@ -6,7 +6,7 @@ from typing import Optional
 #########################################
 
 class AngleModel(BaseModel):
-    angle: float = Field(ge=-180.0, le=180.0)  # Angle in degrees between -360 and 360
+    deg: float = Field(ge=-180.0, le=180.0)  # Angle in degrees between -360 and 360
 
 class PositionModel(BaseModel):
     x: float
