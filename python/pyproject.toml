@@ -2,7 +2,7 @@
 name = "unrobot"
 version = "1.0.1"
 description = "unrobot is a simple robot descriptor loader and toolkit for robotics applications."
-readme = "README.md"
+readme = "../README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2.12.4",
