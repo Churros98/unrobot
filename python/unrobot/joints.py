@@ -41,7 +41,7 @@ def create_joints_tree(joints_descriptor: Dict[str, JointDescModel]) -> JointNod
         )
         joint_nodes[joint_name] = JointNodeModel(
             name=joint_name,
-            angle=AngleModel(angle=0.0),
+            angle=AngleModel(deg=0.0),
             constraint=constraint,
             origin=origin,
             rotation=joint_desc.rotation,
@@ -79,7 +79,6 @@ def find_joint_by_name(robot: RobotModel, name: str) -> Optional[JointNodeModel]
         return None
 
     return recursive_search(robot.root_joint)
-
 
 def list_of_joints_from_root(joint: JointNodeModel) -> List[JointNodeModel]:
     """

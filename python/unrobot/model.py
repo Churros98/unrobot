@@ -14,9 +14,9 @@ class PositionModel(BaseModel):
     z: float
 
 class RotationAxisModel(BaseModel):
-    x: int = Field(ge=0, le=1)
-    y: int = Field(ge=0, le=1)
-    z: int = Field(ge=0, le=1)
+    x: bool = False
+    y: bool = False
+    z: bool = False
 
 class ConstraintModel(BaseModel):
     min: float = Field(ge=-180.0, le=180.0)

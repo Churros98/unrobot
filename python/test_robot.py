@@ -3,7 +3,7 @@ from unrobot.model import PositionModel, RobotModel
 from unrobot.kinematics import distance_between_joints, kinematic_angles_to_position
 
 def test_load_robot_from_file():
-    robot = load_robot_from_file('./tests/robot.json')
+    robot = load_robot_from_file('../robot.json')
     assert isinstance(robot, RobotModel)
     assert robot.information.name == "robot_arm"
     assert robot.root_joint.name == "base_link"
@@ -11,7 +11,7 @@ def test_load_robot_from_file():
     print("Robot loaded successfully with root joint:", robot.root_joint.name)
 
 def test_distance_between_joints():
-    robot = load_robot_from_file('./tests/robot.json')
+    robot = load_robot_from_file('../robot.json')
     jointA = robot.root_joint
     jointB = jointA.children[0]  # Assuming there is at least one child
 
@@ -20,7 +20,7 @@ def test_distance_between_joints():
     print(f"Distance between {jointA.name} and {jointB.name}: {dist}")
 
 def test_kinematic_angles_to_position():
-    robot = load_robot_from_file('./tests/robot.json')
+    robot = load_robot_from_file('../robot.json')
     joint = robot.root_joint
     angles = [30.0, 45.0]  # Example angles for the joints
 

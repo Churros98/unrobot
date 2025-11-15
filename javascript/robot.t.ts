@@ -15,9 +15,9 @@ export const PositionSchema = z.object({
 })
 
 const RotationAxisSchema = z.object({
-  x: z.number().min(0).max(1),
-  y: z.number().min(0).max(1),
-  z: z.number().min(0).max(1),
+  x: z.boolean().default(false),
+  y: z.boolean().default(false),
+  z: z.boolean().default(false),
 })
 
 const ConstraintSchema = z.object({
@@ -67,27 +67,19 @@ export type RobotDescriptor = z.infer<typeof RobotDescriptorSchema>
 // Robot structure in memory
 //////////////////////////////////////////
 
-interface IJointNode {
-  name: string
-  angle: Angle
-  constraint: Constraint
-  origin: Position
-  rotation?: RotationAxis
-  parent?: IJointNode
-  joints: IJointNode[]
-}
-
-const JointNodeSchema: z.ZodType<IJointNode> = z.lazy(() =>
-  z.object({
+const JointNodeSchema = z.object({
     name: z.string().min(1),
     origin: PositionSchema.optional().default({ x: 0, y: 0, z: 0 }),
     angle: AngleSchema,
     constraint: ConstraintSchema,
     rotation: RotationAxisSchema.optional(),
-    parent: JointNodeSchema.optional(),
-    joints: z.array(JointNodeSchema),
+    get parent() {
+      return z.optional(JointNodeSchema)
+    },
+    get joints() {
+      return z.array(JointNodeSchema)
+    },
   })
-);
 
 export const RobotSchema = z.object({
   information: InformationSchema,

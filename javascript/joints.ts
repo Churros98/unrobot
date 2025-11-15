@@ -1,14 +1,16 @@
 import { Robot, JointNode, JointsDescriptor } from './robot.t'
 
-// Create a tree structure of JointNodes from the robot description
-// @param description The robot description
-// @returns The root JointNode of the robot
+/**
+* Create a tree structure of JointNodes from the robot description
+* @param description The robot description
+* @returns The root JointNode of the robot
+*/
 export function create_joints_tree(joints_descriptor: JointsDescriptor): JointNode {
   const joints = Object.entries(joints_descriptor)
 
   // Find the root joint (the one with is_root = true)
   const rootJoints = joints.find(([, joint]) => joint.is_root)
-  if (!rootJoints) {
+  if (rootJoints === undefined) {
     throw new Error('No root joint found in robot description')
   }
 
@@ -44,23 +46,21 @@ export function create_joints_tree(joints_descriptor: JointsDescriptor): JointNo
   // Link the JointNodes together based on the linked_to property in the description
   jointNodes.forEach((jointNode) => {
     const linked_to = joints_descriptor[jointNode.name].linked_to
-    if (linked_to) {
-      linked_to.forEach((linkedJointName) => {
-        const linkedJointNode = jointNodes.get(linkedJointName)
-        if (!linkedJointNode) {
-          throw new Error(`Linked joint ${linkedJointName} not found in description`)
-        }
+    linked_to.forEach((linkedJointName) => {
+      const linkedJointNode = jointNodes.get(linkedJointName)
+      if (linkedJointNode === undefined) {
+        throw new Error(`Linked joint ${linkedJointName} not found in description`)
+      }
 
-        linkedJointNode.parent = jointNode
-        jointNode.joints.push(linkedJointNode)
-      })
-    }
+      linkedJointNode.parent = jointNode
+      jointNode.joints.push(linkedJointNode)
+    })
   })
 
   // Populate the rootNode joints
   rootJoints[1].linked_to?.forEach((linkedJointName) => {
     const linkedJointNode = jointNodes.get(linkedJointName)
-    if (!linkedJointNode) {
+    if (linkedJointNode === undefined) {
       throw new Error(`Linked joint ${linkedJointName} not found in description`)
     }
 
@@ -70,10 +70,12 @@ export function create_joints_tree(joints_descriptor: JointsDescriptor): JointNo
   return rootNode
 }
 
-// Find a joint by name in the robot's joint hierarchy
-// @param robot The Robot containing the joint hierarchy
-// @param name The name of the joint to find
-// @returns The JointNode with the specified name, or undefined if not found
+/**
+* Find a joint by name in the robot's joint hierarchy
+* @param robot The Robot containing the joint hierarchy
+* @param name The name of the joint to find
+* @returns The JointNode with the specified name, or undefined if not found
+*/
 export function find_joint_by_name(robot: Robot, name: string): JointNode | undefined {
   function recursive_search(joint: JointNode): JointNode | undefined {
     if (joint.name === name) {
@@ -93,9 +95,11 @@ export function find_joint_by_name(robot: Robot, name: string): JointNode | unde
   return recursive_search(robot.rootJoint)
 }
 
-// Get the list of joints from the root to the specified joint
-// @param joint The JointNode to trace back to the root
-// @returns An array of JointNodes from the root to the specified joint
+/**
+* Get the list of joints from the root to the specified joint
+* @param joint The JointNode to trace back to the root
+* @returns An array of JointNodes from the root to the specified joint
+*/
 export function list_of_joints_from_root(joint: JointNode): JointNode[] {
   const joints: JointNode[] = []
   let currentJoint: JointNode | undefined = joint
@@ -108,9 +112,11 @@ export function list_of_joints_from_root(joint: JointNode): JointNode[] {
   return joints.reverse()
 }
 
-// Get the list of all joints in the robot starting from the root
-// @param rootJoint The root JointNode of the robot
-// @returns An array of all JointNodes in the robot
+/**
+* Get the list of all joints in the robot starting from the root
+* @param rootJoint The root JointNode of the robot
+* @returns An array of all JointNodes in the robot
+*/
 export function list_all_joints_from_root(rootJoint: JointNode): JointNode[] {
   const joints: JointNode[] = []
   const recursive_collect = (joint: JointNode) => {

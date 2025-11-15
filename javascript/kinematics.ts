@@ -1,10 +1,12 @@
 import { list_of_joints_from_root } from './joints'
 import { JointNode, Position, PositionSchema } from './robot.t'
 
-// Calculate the Euclidean distance between two joints based on their origin positions
-// @param jointA The first JointNode
-// @param jointB The second JointNode
-// @returns The distance between the two joints
+/**
+* Calculate the Euclidean distance between two joints based on their origin positions
+*  @param jointA The first JointNode
+*  @param jointB The second JointNode
+*  @returns The distance between the two joints
+*/
 export function distance_between_joints(jointA: JointNode, jointB: JointNode): number {
   const dx = jointB.origin.x - jointA.origin.x
   const dy = jointB.origin.y - jointA.origin.y
@@ -13,10 +15,12 @@ export function distance_between_joints(jointA: JointNode, jointB: JointNode): n
   return Math.sqrt(dx * dx + dy * dy + dz * dz)
 }
 
-// Calculate the point of a joint in 3D space
-// @param joint The JointNode we want to calculate the position for (from the root)
-// @param angle Angle list of each joint
-// @returns The 3D position of the joint
+/**
+* Calculate the point of a joint in 3D space
+* @param joint The JointNode we want to calculate the position for (from the root)
+* @param angle Angle list of each joint
+* @returns The 3D position of the joint
+*/
 export function kinematic_angles_to_position(joint: JointNode, angles: number[]): Position {
     // Build the list of joints from root to the target joint
     const list_of_joints = list_of_joints_from_root(joint)
@@ -69,12 +73,14 @@ export function kinematic_angles_to_position(joint: JointNode, angles: number[])
     return position
 }
 
-// Inverse kinematics using a simple gradient descent approach
-// @param joint The end-effector JointNode we want to reach the target position
-// @param target The target Position we want the end-effector to reach
-// @param maxIterations Maximum number of iterations for the algorithm
-// @param learningRate The step size for each iteration
-// @returns The list of joint angles that move the end-effector close to the target position
+/**
+* Inverse kinematics using a simple gradient descent approach
+* @param joint The end-effector JointNode we want to reach the target position
+* @param target The target Position we want the end-effector to reach
+* @param maxIterations Maximum number of iterations for the algorithm
+* @param learningRate The step size for each iteration
+* @returns The list of joint angles that move the end-effector close to the target position
+*/
 export function inverse_kinematics(
     joint: JointNode,
     target: Position,

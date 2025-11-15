@@ -32,9 +32,9 @@
                 "Bras2"
             ],
             "rotation": {
-                "x": 0,
-                "y": 1,
-                "z": 0
+                "x": false,
+                "y": true,
+                "z": false
             },
             "origin": {
                 "x": 182.37254896624194,
@@ -52,9 +52,9 @@
                 "Cone1"
             ],
             "rotation": {
-                "x": 0,
-                "y": 1,
-                "z": 0
+                "x": false,
+                "y": true,
+                "z": false
             },
             "origin": {
                 "x": 153.40298005250622,
@@ -69,9 +69,9 @@
                 "max": 180
             },
             "rotation": {
-                "x": 0,
-                "y": 1,
-                "z": 0
+                "x": false,
+                "y": true,
+                "z": false
             },
             "origin": {
                 "x": 124.45841190618019,
@@ -89,9 +89,9 @@
                 "max": 180
             },
             "rotation": {
-                "x": 0,
-                "y": 0,
-                "z": 1
+                "x": false,
+                "y": false,
+                "z": true
             },
             "origin": {
                 "x": 114.38956726715746,
