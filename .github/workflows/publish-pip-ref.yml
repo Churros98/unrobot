@@ -22,6 +22,8 @@ jobs:
         working-directory: ./python
         run: uv run pytest
       - name: Build
+        working-directory: ./python
         run: uv build
       - name: Publish
+        working-directory: ./python
         run: uv publish
